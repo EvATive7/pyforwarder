@@ -59,7 +59,11 @@ def proxy_request(path):
     console_handler.setLevel(logging.DEBUG)
     console_handler.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s][%(name)s] %(msg)s'))
     logger.handlers.append(console_handler)
-    logger.debug('Request received')
+    file_handler = logging.FileHandler('Data/Log/log.log')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s][%(name)s] %(msg)s'))
+    logger.handlers.append(file_handler)
+    logger.info('access')
 
     matched_host = match_origin_host(from_host)
     if not matched_host:
