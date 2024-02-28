@@ -1,0 +1,5 @@
+proxy: 127.0.0.1:7890
+running_config:
+  host: 127.0.0.1
+  port: 8254
+  https: False
