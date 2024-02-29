@@ -63,7 +63,7 @@ def proxy_request(path):
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s][%(name)s] %(msg)s'))
     logger.handlers.append(file_handler)
-    logger.info('access')
+    logger.debug('access')
 
     matched_host = match_origin_host(from_host)
     if not matched_host:
@@ -113,7 +113,7 @@ def proxy_request(path):
         content = replace_all_origin_host(content.decode()).encode()
 
     proxy_response = Response(content, status=status_code, mimetype=mime_type, headers=response_headers)
-    logger.debug(f'return')
+    logger.info(f'{status_code}')
     return proxy_response
 
 
