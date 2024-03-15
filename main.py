@@ -110,7 +110,10 @@ def proxy_request(path):
         response_headers['location'] = redirect_url
 
     if mimetype_is_text(mime_type):
-        content = replace_all_origin_host(content.decode()).encode()
+        content = replace_all_origin_host(content.decode())
+        if not https:
+            content = content.replace('https', 'http')
+        content = content.encode()
 
     proxy_response = Response(content, status=status_code, mimetype=mime_type, headers=response_headers)
     logger.info(f'{status_code}')
